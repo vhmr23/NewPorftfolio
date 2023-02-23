@@ -31,14 +31,14 @@ function Header({}: Props) {
             />
         </motion.div>
         <motion.div 
-            className='flex flex-row items-center text-gray-300 cursor-pointer'
+            className='flex flex-row items-center text-gray-300 cursor-pointer mr-5'
             initial={{opacity: 0, x: 500, scale: 0.5}}
             animate={{opacity: 1, x: 0, scale: 1}}
             transition={{ duration: 1 }}
         >
             <SocialIcon
                 className='cursor-pointer' 
-                network="email" 
+                network="whatsapp" 
                 bgColor="transparent"
                 fgColor="gray"
             />
