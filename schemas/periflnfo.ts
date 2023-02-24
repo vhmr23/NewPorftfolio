@@ -38,6 +38,14 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'imageProfile',
+      title: 'Image Profile',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
       name: 'bio',
       title: 'Bio',
       type: 'array',
