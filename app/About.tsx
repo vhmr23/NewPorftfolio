@@ -1,9 +1,14 @@
 "use client"
 import {motion} from 'framer-motion'
+import { PortableText } from '@portabletext/react'
+import urlFor from '../lib/urlFor'
+import { RichTextComponent } from '../components/RichTextComponent';
 
-type Props = {}
+type Props = {
+    datos: PerfilInfo
+}
 
-function About({}: Props) {
+function About({datos}: Props) {
   return (
     <motion.div 
         initial={{ x: -200, opacity: 0 }}
@@ -15,7 +20,7 @@ function About({}: Props) {
     >
         <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">About</h3> 
         <motion.img 
-            src="/personal2.png"
+            src={urlFor(datos.image).url()!}
             alt="myself"
             initial={{ x: -200, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -33,13 +38,10 @@ function About({}: Props) {
             <h4 className='text-4xl font-semibold'>
                 Here is a little about me
             </h4>
-            <p className='text-base'>
-                I'm Victor H. Montoya R. Based in Venezuela. 
-                Full stack web development - freelance. 
-                I am proactive, curious, dedicated to achieving goals, and a life-long learner.
-                Handling of React, redux, React Native, Nodejs, Express, mongo, laravel, firebase, heroku, Github, php, MySQL, postgresql, Graphql, Flutter, git, bootstrap, material desing, Ant design.
-                Support in WordPress and Woocommerce.
-            </p>
+            <PortableText
+                value={datos.bio} 
+                components={RichTextComponent}
+            />
         </motion.div>
         <div className='w-full absolute top-[30%] bg-[#F7AB0A]/20 left-0 h-[500px] skew-y-12'></div>
     </motion.div>

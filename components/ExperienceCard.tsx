@@ -1,45 +1,44 @@
 "use client"
 import {motion} from 'framer-motion'
+import urlFor from '../lib/urlFor'
 
-type Props = {}
+type Props = {
+    experience: Experience
+}
 
-function ExperienceCard({}: Props) {
+function ExperienceCard({experience}: Props) {
   return (
     <article className='flex flex-col rounded-lg items-center space-y-7 flex-shrink-0
     w-[500px] md:w-[600px] xl:w-[900px] snap-center bg-[#292929] p-10
     hover:opacity-100 opacity-40 cursor-pointer transition-opacity duration-200 overflow-hidden'>
-        <motion.img
-            className='w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-cover object-center'
-            initial={{ y: -200, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.2 }}
-            viewport={{ once: true }} 
-            src="/perdonsl2.png" 
+        <img
+            className='w-32 h-24 xl:w-[200px] xl:h-[100px] object-center'
+            src={urlFor(experience.JobImage).url()!}
             alt="" 
         />
 
         <div className='px-0 md:px-10'>
-            <h4 className='text-4xl font-light'>CEO of Judah's Lion Studies</h4>
-            <p className='font-bold text-2xl mt-1'>Judah's Lion Studies</p>
+            <h4 className='text-4xl font-light'>{experience.jobTitle}</h4>
+            <p className='font-bold text-2xl mt-1'>{experience.companyTitle}</p>
             <div className='flex space-x-2 my-2'>
-                <img 
-                    className='h-10 w-10 rounded-full'
-                    src="/personal.png" 
-                    alt="" 
-                />
-                <img 
-                    className='h-10 w-10 rounded-full'
-                    src="/personal.png" 
-                    alt="" 
-                />
+                {
+                    experience.tecnologies.map((tec) => (
+                        <img 
+                            className='h-10 w-16 rounded-full'
+                            src={urlFor(tec.mainImage).url()!}
+                            alt="" 
+                        />
+                    ))
+                }
             </div>
-            <p className='uppercase py-5 text-gray-300'>Started work ... - ended...</p>
+            <p className='uppercase py-5 text-gray-300'>{experience.dateStared} - {experience.dateEnded}</p>
             <ul className='list-disc space-y-4 ml-5 text-lg'>
-                <li>Summary points</li>
-                <li>Summary points</li>
-                <li>Summary points</li>
-                <li>Summary points</li>
-                <li>Summary points</li>
+                {
+                    experience.points.map((point) => (
+                        <li>{point}</li>
+                    ))
+                }
+
             </ul>
         </div>
     </article>

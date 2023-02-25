@@ -2,9 +2,11 @@
 import {motion} from 'framer-motion'
 import ExperienceCard from '../components/ExperienceCard'
 
-type Props = {}
+type Props = {
+  datosExp: Experience[]
+}
 
-function Experience({}: Props) {
+function Experience({datosExp}: Props) {
   return (
     <motion.div 
         initial={{ x: -200, opacity: 0 }}
@@ -17,9 +19,9 @@ function Experience({}: Props) {
         <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">Expeience</h3> 
         <div className='w-full flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory pt-24
         scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80'>
-            <ExperienceCard />
-            <ExperienceCard />
-            <ExperienceCard />
+           {datosExp.map((exp) => (
+              <ExperienceCard key={exp._id} experience={exp}/>
+           ))}
         </div>
     </motion.div>
   )

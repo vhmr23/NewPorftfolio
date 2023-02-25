@@ -1,10 +1,10 @@
-interface SanityBody {
+type Base = {
     _createdAt: string;
     _id: string;
     _rev: string;
     _type: string;
     _updatedAt: string;
-}
+};
 
 interface Image extends Base {
     _type: 'image';
@@ -47,6 +47,7 @@ interface Title extends Base {
 
 interface Social extends SanityBody {
     _type: 'social';
+    _id: string;
     title: string;
     url: string;
 }
@@ -59,15 +60,15 @@ interface PerfilInfo extends SanityBody {
     phone: string;
     socials: Social[];
     bio: Block[];
-    Image: Image;
-    ImageProfile: Image;
+    image: Image;
+    imageProfile: Image;
 }
 
 interface Tecnology extends SanityBody {
     _type: 'skill';
     title: string;
     description: string;
-    image: Image;
+    mainImage: Image;
     progress: number;
 }
 
@@ -83,14 +84,16 @@ interface Project extends SanityBody {
 
 interface Skill extends SanityBody {
     _type: 'skill';
+    _id: string;
     title: string;
     description: string;
-    image: Image;
+    mainImage: Image;
     progress: number;
 }
 
 interface Experience extends SanityBody {
     _type: 'experience';
+    _id: string;
     jobTitle: string;
     JobImage: Image;
     companyTitle: string;
